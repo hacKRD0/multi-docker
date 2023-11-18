@@ -13,3 +13,8 @@ after_success:
     - docker build -t krajavar/multi-nginx ./nginx
     - docker build -t krajavar/multi-server ./server
     - docker build -t krajavar/multi-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push krajavar/multi-client
+    - docker push krajavar/multi-nginx
+    - docker push krajavar/multi-server
+    - docker push krajavar/multi-worker
